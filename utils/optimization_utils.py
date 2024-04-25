@@ -153,10 +153,12 @@ def optimize_alignment(initial_pc, reference_pc, actual_rotation, num_trials=10)
 
     return list_of_dicts
 
+
+import tqdm
 def multiple_optimizations(initial_pc, reference_pc, actual_rotation, num_runs=50, num_trials=10):
     results_df = pd.DataFrame()
 
-    for run in range(num_runs):
+    for run in tqdm.tqdm(range(num_runs), desc='Applying transformations'):
         data = optimize_alignment(initial_pc, reference_pc, actual_rotation, num_trials)
         # Add run number to each dictionary
         for d in data:
